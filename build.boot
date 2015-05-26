@@ -11,8 +11,6 @@
                         [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                         [org.omcljs/om "0.8.8"]
                         [sablono "0.3.4"]
-                        [org.clojars.leanpixel/cljs-uuid-utils "1.0.0-SNAPSHOT"]
-                        [com.andrewmcveigh/cljs-time "0.3.5"]
                         [ring "1.3.2"]
                         [compojure "1.3.4"]
                         [http-kit "2.1.19"]])
