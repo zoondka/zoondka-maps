@@ -61,4 +61,4 @@
             :output-to "js/main.js")
       (aot :all true)
       (uber)
-      (jar :file "zoondka-maps.jar" :main 'lokate.server)))
+      (jar :file "zoondka-maps.jar" :main 'zoondka-maps.server)))
