@@ -7,7 +7,6 @@
   :dependencies '[[adzerk/boot-cljs "0.0-3269-1"]
                   [adzerk/boot-cljs-repl "0.1.9"]
                   [adzerk/boot-reload "0.2.6"]
-                  [boot-syu "0.1.0"]
                   [org.clojure/clojure "1.6.0"]
                   [org.clojure/clojurescript "0.0-3297"]
                   [org.clojure/core.async "0.1.346.0-17112a-alpha"]
@@ -15,7 +14,7 @@
                   [sablono "0.3.4"]
                   [selmer "0.8.2"]    
                   [ring "1.3.2"]
-                  [compojure "1.3.4"]
+                  [compojure "1.3.0"]
                   [http-kit "2.1.19"]])
 
 (require
@@ -24,7 +23,6 @@
   '[adzerk.boot-cljs       :refer :all]
   '[adzerk.boot-reload     :refer :all]
   '[adzerk.boot-cljs-repl  :refer :all]
-  '[boot-syu.task          :refer :all]
   '[zoondka-maps.server       :as server]
   '[ring.middleware.reload    :as reload]
   '[ring.middleware.file      :as file]
