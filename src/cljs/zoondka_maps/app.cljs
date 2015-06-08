@@ -7,8 +7,8 @@
 
 (enable-console-print!)
 
-(def tile-url "http://{s}.tile.osm.org/{z}/{x}/{y}.png")
-(def tile-attr "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors")
+(def tile-url "https://{s}.tile.osm.org/{z}/{x}/{y}.png")
+(def tile-attr "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors")
 
 (def app-state
   (atom {:model {:settings         {:tile-url     {:id :tile-url
