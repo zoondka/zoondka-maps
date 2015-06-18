@@ -2,23 +2,92 @@
     "version": 7,
     "glyphs": "mapbox://fontstack/{fontstack}/{range}.pbf",
     "constants": {
+        "@sans": "Open Sans Regular, Arial Unicode MS Regular",
+        "@small-label": "#111111",
         "@water": "#88aacc",
-        "@land": "#ffffff"
+        "@waterLine": "#88aacc",
+        "@land": "#ffffff",
+        "@park": "#98FB98",
+        "@road": "#333333",
+        "@road-width": {
+            "base": 1.55,
+            "stops": [[4, 0.25], [20, 30]]
+        }
     },
     "sources": {
         "osm": {
             "type": "vector",
             "tiles": ["https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-Vg2j_l4"]
+        },
+        "mb": {
+            "type": "vector",
+            "url": "mapbox://mapbox.mapbox-streets-v5"
         }
     },
     "layers": [
         {
-            "id": "water",
+            "id": "water-polygon",
             "source": "osm",
             "source-layer": "water",
             "type": "fill",
             "paint": {
                 "fill-color": "@water"
+            }
+        },
+        {
+            "id": "water-line",
+            "source": "osm",
+            "source-layer": "water",
+            "type": "line",
+            "filter": ["==", "$type", "LineString"],
+            "paint": {
+                "line-color": "@water"
+            }
+        },
+        {
+            "id": "land",
+            "type": "fill",
+            "source": "osm",
+            "source-layer": "landuse",
+            "minzoom": 2,
+            "paint": {
+                "fill-color": "@park"
+            }
+        },
+        {
+            "id": "road",
+            "source": "mb",
+            "source-layer": "road",
+            "minzoom": 2,
+            "type": "line",
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "@road",
+                "line-width": "@road-width"
+            }
+        },
+        {
+            "id": "city-label",
+            "source": "osm",
+            "source-layer": "places",
+            "minzoom": 5,
+            "maxzoom": 14,
+            "type": "symbol",
+            "layout": {
+                "text-field": "{name}",
+                "text-font": "@sans",
+                "text-max-size": 24,
+                "text-max-width": 10,
+                "text-letter-spacing": 0.1
+            },
+            "paint": {
+                "text-color": "@small-label",
+                "text-size": {
+                    "stops": [[8, 14], [12, 16], [14, 16]]
+                }
             }
         }
     ]

@@ -19,8 +19,7 @@
   (let [style (read-style)
         map (js/mapboxgl.Map. (clj->js {:container "map"
                                         :style style
-                                        :zoom 7
-                                        :minZoom 2
+                                        :zoom 5
                                         :center [0, 0]}))]
 
     (if navigator.geolocation
