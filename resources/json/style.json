@@ -1,0 +1,25 @@
+{
+    "version": 7,
+    "glyphs": "mapbox://fontstack/{fontstack}/{range}.pbf",
+    "constants": {
+        "@water": "#88aacc",
+        "@land": "#ffffff"
+    },
+    "sources": {
+        "osm": {
+            "type": "vector",
+            "tiles": ["https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-Vg2j_l4"]
+        }
+    },
+    "layers": [
+        {
+            "id": "water",
+            "source": "osm",
+            "source-layer": "water",
+            "type": "fill",
+            "paint": {
+                "fill-color": "@water"
+            }
+        }
+    ]
+}
