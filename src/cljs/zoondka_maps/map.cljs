@@ -10,10 +10,6 @@
 
 (def mapbox-key "pk.eyJ1IjoibGVibG93bCIsImEiOiJmMzEzNGMzMDgzOWEyNjg0NDAwMzQzMWQ1OTUzM2FmYSJ9.J-V3-0X4LnoyptGTCGys3g")
 
-(defn read-style []
-  (let [r (t/reader :json)]
-    (t/read r (m/slurp "resources/json/style.json"))))
-
 (defn init-map [owner]
   (set! (.-accessToken js/mapboxgl) mapbox-key)
 
