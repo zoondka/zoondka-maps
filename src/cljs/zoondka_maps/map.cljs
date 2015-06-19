@@ -4,6 +4,7 @@
             [sablono.core :as html :refer-macros [html]]
             [clojure.set :as set]
             [zoondka-maps.util :as u]
+            [zoondka-maps.style :as s]
             [cognitect.transit :as t])
   (:require-macros [zoondka-maps.macros :as m]))
 
@@ -16,7 +17,7 @@
 (defn init-map [owner]
   (set! (.-accessToken js/mapboxgl) mapbox-key)
 
-  (let [style (read-style)
+  (let [style s/style
         map (js/mapboxgl.Map. (clj->js {:container "map"
                                         :style style
                                         :zoom 5
