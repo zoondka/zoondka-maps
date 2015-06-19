@@ -4,9 +4,7 @@
             [sablono.core :as html :refer-macros [html]]
             [clojure.set :as set]
             [zoondka-maps.util :as u]
-            [zoondka-maps.style :as s]
-            [cognitect.transit :as t])
-  (:require-macros [zoondka-maps.macros :as m]))
+            [zoondka-maps.style :as s]))
 
 (def mapbox-key "pk.eyJ1IjoibGVibG93bCIsImEiOiJmMzEzNGMzMDgzOWEyNjg0NDAwMzQzMWQ1OTUzM2FmYSJ9.J-V3-0X4LnoyptGTCGys3g")
 
