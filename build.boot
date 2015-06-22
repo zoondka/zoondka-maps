@@ -3,27 +3,25 @@
 (set-env!
   :target-path "target"
   :resource-paths #{"resources"}
-  :source-paths #{"src/clj" "src/cljs" "resources/json"}
-  :dependencies '[[adzerk/boot-cljs "0.0-3269-1"]
-                  [adzerk/boot-cljs-repl "0.1.9"]
-                  [adzerk/boot-reload "0.2.6"]
-                  [org.clojure/clojure "1.6.0"]
-                  [org.clojure/clojurescript "0.0-3297"]
+  :source-paths #{"src/clj" "src/cljs"}
+  :dependencies '[[adzerk/boot-cljs "0.0-3308-0"]
+                  [adzerk/boot-reload "0.3.1"]
+                  [org.clojure/clojure "1.7.0-RC2"]
+                  [org.clojure/clojurescript "0.0-3308"]
                   [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                   [com.cognitect/transit-cljs "0.8.220"]
                   [org.omcljs/om "0.8.8"]
                   [sablono "0.3.4"]
                   [selmer "0.8.2"]
                   [ring "1.3.2"]
-                  [compojure "1.3.0"]
-                  [http-kit "2.1.19"]])
+                  [compojure "1.3.4"]
+                  [http-kit "2.1.18"]])
 
 (require
   '[boot.core :as c]
   '[clojure.java.io :as io]
   '[adzerk.boot-cljs       :refer :all]
   '[adzerk.boot-reload     :refer :all]
-  '[adzerk.boot-cljs-repl  :refer :all]
   '[zoondka-maps.server       :as server]
   '[ring.middleware.reload    :as reload]
   '[ring.middleware.file      :as file]

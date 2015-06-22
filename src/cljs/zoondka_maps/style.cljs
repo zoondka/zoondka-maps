@@ -5,7 +5,12 @@
    :glyphs "mapbox://fontstack/{fontstack}/{range}.pbf"
    :constants {"@sans" "Open Sans Regular, Arial Unicode MS Regular"
                "@water" "#bbbbff" ;"#99aaee"
-               "@land" "#f7f7f7"
+               "@land" "#f4efe1"
+               "@snow" "#f4f8ff"
+               "@crop" "#eeeed4"
+               "@grass" "#e6e6cc"
+               "@scrub" "#dfe5c8"
+               "@wood" "#cee2bd"
                "@green" "rgba(0, 233, 0, 0.2)"
                "@admin_l2_width" {"stops" [[2 0.6] [20 6]]}
                "@admin_l3_width" {"stops" [[5 0.6] [20 6]]}}
@@ -20,6 +25,39 @@
               :source "mb"
               :source-layer "landuse"
               :paint {:fill-color "@green"}}
+             {:id "landcover_snow"
+              :type "fill"
+              :source "mb"
+              :source-layer "landcover"
+              :filter ["==" "class" "snow"]
+              :paint {"fill-color" "@snow"}}
+             {:id "landcover_crop"
+              :type "fill"
+              :source "mb"
+              :source-layer "landcover"
+              :filter ["==" "class" "crop"]
+              :paint {:fill-color "@crop"}}
+             {:id "landcover_grass"
+              :type "fill"
+              :source "mb"
+              :source-layer "landcover"
+              :filter ["==" "class" "grass"]
+              :paint {:fill-color "@grass"
+                      :fill-opacity {:stops [[12 1] [16 0.2]]}}}
+             {:id "landcover_scrub"
+              :type "fill"
+              :source "mb"
+              :source-layer "landcover"
+              :filter ["==" "class" "scrub"]
+              :paint {:fill-color "@scrub"
+                      :fill-opacity {:stops [[12 1] [16 0.2]]}}}
+             {:id "landcover_wood"
+              :type "fill"
+              :source "mb"
+              :source-layer "landcover"
+              :filter ["==" "class" "wood"]
+              :paint {:fill-color "@wood"
+                      :fill-opacity {:stops [[12 1] [16 0.2]]}}}
              {:id "water"
               :type "fill"
               :source "mb"
