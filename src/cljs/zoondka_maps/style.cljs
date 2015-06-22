@@ -79,6 +79,22 @@
              :source "mb"
              :source-layer "water"
              :paint {:fill-color "@water"}}
+            {:id "contour_line"
+             :type "line"
+             :source "mb"
+             :source-layer "contour"
+             :filter ["!=" "index" 5]
+             :paint {:line-color "#000"
+                     :line-width 1.2
+                     :line-opacity {:stops [[11 0.05] [12 0.1]]}}}
+            {:id "contour_line_loud"
+             :type "line"
+             :source "mb"
+             :source-layer "contour"
+             :filter ["==" "index" 5]
+             :paint {:line-color "#000"
+                     :line-width 1.2
+                     :line-opacity {:stops [[11 0.1] [12 0.2]]}}}
             {:id "admin_l2"
              :type "line"
              :source "mb"
