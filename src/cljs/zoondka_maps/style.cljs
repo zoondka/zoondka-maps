@@ -12,8 +12,11 @@
                "@wood" "#cee2bd"
                "@water" "#bbbbff" ;"#99aaee"
                "@green" "rgba(0, 233, 0, 0.2)"
-               "@admin_l2_width" {"stops" [[2 0.6] [20 6]]}
-               "@admin_l3_width" {"stops" [[5 0.6] [20 6]]}}
+               "@motorway_width" {:base 1.25
+                                  :stops [[11 1] [20 30]]}
+               "@motorway_casing_width" {:stops [[9 0.9] [11 1] [14 1.5]]}
+               "@admin_l2_width" {:stops [[2 0.6] [20 6]]}
+               "@admin_l3_width" {:stops [[5 0.6] [20 6]]}}
 
    :sources {:mb {:type "vector"
                   :url "mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v6"}}
@@ -74,11 +77,28 @@
              :filter ["==" "class" "agriculture"]
              :paint {:fill-color "rgba(177, 177, 0, 0.1)"
                      :fill-outline-color "rgba(177, 177, 0, 0.1)"}}
+            {:id "road_motorway_casing"
+             :type "line"
+             :source "mb"
+             :source-layer "road"
+             :filter ["==" "class" "motorway"]
+             :layout {:line-join "round"
+                      :line-cap "round"}
+             :paint {:line-color "#fff"
+                     :line-width "@motorway_casing_width"
+                     :line-gap-width "@motorway_width"
+                     :line-opacity {:stops [[8.5 0] [9 1]]}}}
+            {:id "road_motorway"
+             :ref "road_motorway_casing"
+             :paint {:line-color "#777"
+                     :line-width "@motorway_width"
+                     :line-opacity {:stops [[4.5 0] [6 1]]}}}
             {:id "water"
              :type "fill"
              :source "mb"
              :source-layer "water"
-             :paint {:fill-color "@water"}}
+             :paint {:fill-color "@water"
+                     :fill-outline-color "#a2bdc0"}}
             {:id "contour_line"
              :type "line"
              :source "mb"
