@@ -53,6 +53,27 @@
              :filter ["==" "class" "wood"]
              :paint {:fill-color "@wood"
                      :fill-opacity {:stops [[12 1] [16 0.2]]}}}
+            {:id "landuse_wood"
+             :type "fill"
+             :source "mb"
+             :source-layer "landuse"
+             :filter ["==" "class" "wood"]
+             :paint {:fill-color "rgba(0, 182, 0, 0.1)"
+                     :fill-outline-color "rgba(0, 182, 0, 0.2)"}}
+            {:id "landuse_rock"
+             :type "fill"
+             :source "mb"
+             :source-layer "landuse"
+             :filter ["==" "class" "rock"]
+             :paint {:fill-color "rgba(77, 77, 77, 0.1)"
+                     :fill-outline-color "rgba(77, 77, 77, 0.2)"}}
+            {:id "landuse_agriculture"
+             :type "fill"
+             :source "mb"
+             :source-layer "landuse"
+             :filter ["==" "class" "agriculture"]
+             :paint {:fill-color "rgba(177, 177, 0, 0.1)"
+                     :fill-outline-color "rgba(177, 177, 0, 0.1)"}}
             {:id "water"
              :type "fill"
              :source "mb"
