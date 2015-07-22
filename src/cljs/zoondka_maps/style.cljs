@@ -13,13 +13,18 @@
                "@water" "#bbbbff" ;"#99aaee"
                "@green" "rgba(0, 233, 0, 0.2)"
                "@motorway_width" {:base 1.25
-                                  :stops [[11 1] [20 30]]}
+                                  :stops [[0 0] [4 1] [20 30]]}
                "@motorway_casing_width" {:stops [[9 0.9] [11 1] [14 1.5]]}
+               "@main_width" {:base 1.3
+                              :stops [[3 0] [4 1] [20 28]]}
+               "@main_casing_width" {:stops [[11 1] [15 1.5]]}
                "@admin_l2_width" {:stops [[2 0.6] [20 6]]}
                "@admin_l3_width" {:stops [[5 0.6] [20 6]]}}
 
    :sources {:mb {:type "vector"
-                  :url "mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v6"}}
+                  :url "mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v6"}
+             :osm {:type "vector"
+                   :url "http://tile.openstreetmap.us/vectiles-highroad/{z}/{x}/{y}.mvt"}}
    :layers [{:id "background"
              :type "background"
              :paint {:background-color "@land"}}
@@ -77,22 +82,35 @@
              :filter ["==" "class" "agriculture"]
              :paint {:fill-color "rgba(177, 177, 0, 0.1)"
                      :fill-outline-color "rgba(177, 177, 0, 0.1)"}}
-            {:id "road_motorway_casing"
+            {:id "road_main_casing"
              :type "line"
              :source "mb"
              :source-layer "road"
-             :filter ["==" "class" "motorway"]
+             :filter ["==" "class" "main"]
              :layout {:line-join "round"
                       :line-cap "round"}
              :paint {:line-color "#fff"
+                     :line-width "@main_casing_width"
+                     :line-gap-width "@main_width"
+                     :line-opacity {:stops [[8 0] [9 1]]}}}
+            {:id "road_motorway_casing"
+             :type "line"
+             :source "osm"
+             :layout {:line-join "round"
+                      :line-cap "round"}
+             :paint {:line-color "#ff00ff"
                      :line-width "@motorway_casing_width"
-                     :line-gap-width "@motorway_width"
-                     :line-opacity {:stops [[8.5 0] [9 1]]}}}
+                     :line-gap-width "@motorway_width"}}
+            {:id "road_main"
+             :ref "road_main_casing"
+             :paint {:line-color "#000"
+                     :line-width "@main_width"
+                     :line-opacity {:stops [[3 0] [4 1]]}}}
             {:id "road_motorway"
              :ref "road_motorway_casing"
              :paint {:line-color "#777"
                      :line-width "@motorway_width"
-                     :line-opacity {:stops [[4.5 0] [6 1]]}}}
+                     :line-opacity {:stops [[3 0] [4 1]]}}}
             {:id "water"
              :type "fill"
              :source "mb"
