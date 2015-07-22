@@ -6,7 +6,7 @@
 (defn run [handler & [port]]
   (defonce ^:private server
     (let [port (Integer. (or port 8090))]
-      (print "Starting web server on port " port ".\n")
+      (println "Starting web server on port" port "...")
       (run-server handler {:port port})))
   server)
 
