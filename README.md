@@ -3,7 +3,7 @@ https://maps.zoondka.com/
 
 ### Design Goals
 + Create an open source online vector map that is free to use, & easy to integrate.
-+ Compact tile delivery format & offline capability built-in from the ground up.
++ Compact tile delivery format & offline capability built in from the ground up.
 + Minimalist tile styling via WebGL
 
 ### TODO
