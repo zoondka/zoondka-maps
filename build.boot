@@ -47,8 +47,7 @@
 (deftask dev
   "Build cljs and start server for development."
   []
-  (comp (dev-cljs)
-        (dev-httpkit)))
+  (comp (dev-cljs) (dev-httpkit)))
 
 (deftask prod
   "Build application uberjar with http-kit main."
@@ -60,3 +59,8 @@
         (uber :exclude (conj pod/standard-jar-exclusions  #"(?i).*\.html" #"(?i)clout/.*"))
         (jar :file (str (:name project) ".jar")
              :main 'zoondka-maps.server)))
+
+(deftask prod-install
+  "Install to local Maven repository."
+  []
+  (comp (prod) (install)))
