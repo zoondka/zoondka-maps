@@ -15,7 +15,8 @@
         map (js/mapboxgl.Map. (clj->js {:container "map"
                                         :style style
                                         :zoom 5
-                                        :center [0, 0]}))]
+                                        :center [0, 0]
+                                        :attributionControl false}))]
 
     (if navigator.geolocation
       (.getCurrentPosition navigator.geolocation
