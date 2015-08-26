@@ -18,23 +18,38 @@
                "@main_width" {:base 1.3
                               :stops [[3 0] [4 1] [20 28]]}
                "@main_casing_width" {:stops [[11 1] [15 1.5]]}
-               "@admin_l2_width" {:stops [[2 0.6] [20 6]]}
-               "@admin_l3_width" {:stops [[5 0.6] [20 6]]}}
-
-   :sources {:mapbox   {:type "vector"
-                        :url "mapbox://mapbox.mapbox-streets-v5"}
-             :tile-gen {:type "vector"
+               "@boundary_width" {:stops [[0 0.5] [20 6]]}}
+   :sources {:tile-srv {:type "vector"
                         :tiles ["https://maps.zoondka.com/tile-srv/all/{z}/{x}/{y}.mvt"]}}
    :layers [{:id "background"
              :type "background"
              :paint {:background-color "@land"}}
-            {:id "water"
-             :type "fill"
-             :source "tile-gen"
-             :source-layer "water"
-             :paint {:fill-color "@water"}}
             {:id "earth"
              :type "fill"
-             :source "tile-gen"
+             :source "tile-srv"
              :source-layer "earth"
-             :paint {:fill-color "@land"}}]})
+             :paint {:fill-color "@land"}}
+            {:id "water"
+             :type "fill"
+             :source "tile-srv"
+             :source-layer "water"
+             :paint {:fill-color "@water"}}
+            {:id "country-boundary"
+             :type "line"
+             :source "tile-srv"
+             :source-layer "boundaries"
+             :filter ["==" "type" "country"]
+             :layout {:line-cap "round"
+                      :line-join "round"}
+             :paint {:line-color "#666"}
+             :line-width "@boundary_width"}
+            {:id "state-boundary"
+             :type "line"
+             :source "tile-srv"
+             :source-layer "boundaries"
+             :filter ["==" "type" "state"]
+             :layout {:line-cap "round"
+                      :line-join "round"}
+             :paint {:line-color "#999"
+                     :line-dasharray [2, 4]}
+             :line-width "@boundary_width"}]})
