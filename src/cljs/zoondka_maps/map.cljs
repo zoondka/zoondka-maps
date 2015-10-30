@@ -18,6 +18,8 @@
                                         :center [0, 0]
                                         :attributionControl false}))]
 
+    (set! (.-debug map) true)
+
     (if navigator.geolocation
       (.getCurrentPosition navigator.geolocation
         (fn [pos]

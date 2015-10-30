@@ -13,12 +13,12 @@
                "@water" "#bbbbff" ;"#99aaee"
                "@green" "rgba(0, 233, 0, 0.2)"
                "@motorway_width" {:base 1.25
-                                  :stops [[0 0] [4 1] [20 30]]}
-               "@motorway_casing_width" {:stops [[9 0.9] [11 1] [14 1.5]]}
+                                  :stops [[8 0.5] [12 1] [16 3]]}
+               "@motorway_casing_width" {:stops [[8 0.5] [11 1] [14 1.5]]}
                "@main_width" {:base 1.3
                               :stops [[3 0] [4 1] [20 28]]}
                "@main_casing_width" {:stops [[11 1] [15 1.5]]}
-               "@boundary_width" {:stops [[0 0.5] [20 6]]}}
+               "@boundary_width" {:stops [[0 0.2] [20 6]]}}
    :sources {:tile-srv {:type "vector"
                         :tiles ["https://maps.zoondka.com/tile-srv/all/{z}/{x}/{y}.mvt"]}}
    :layers [{:id "background"
@@ -51,5 +51,13 @@
              :layout {:line-cap "round"
                       :line-join "round"}
              :paint {:line-color "#999"
-                     :line-dasharray [2, 4]}
-             :line-width "@boundary_width"}]})
+                     :line-dasharray [1, 2]
+                     :line-width "@boundary_width"}}
+            {:id "road"
+             :type "line"
+             :source "tile-srv"
+             :source-layer "roads"
+             :layout {:line-cap "round"
+                      :line-join "round"}
+             :paint {:line-color "#000"
+                     :line-width "@motorway_width"}}]})
