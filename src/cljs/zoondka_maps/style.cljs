@@ -51,6 +51,15 @@
              :paint {:line-color "#999"
                      :line-dasharray [1, 2]
                      :line-width state_boundary_width}}
+            {:id "main"
+             :type "line"
+             :source "tile-srv"
+             :source-layer "roads"
+             :filter ["in" "type" "trunk" "primary" "secondary" "tertiary"]
+             :layout {:line-cap "round"
+                      :line-join "round"}
+             :paint {:line-color main
+                     :line-width main_width}}
             {:id "motorway_casing"
              :type "line"
              :source "tile-srv"
@@ -65,13 +74,4 @@
             {:id "motorway"
              :ref "motorway_casing"
              :paint {:line-color motorway
-                     :line-width motorway_width}}
-            {:id "major_roads"
-             :type "line"
-             :source "tile-srv"
-             :source-layer "roads"
-             :filter ["in" "type" "trunk" "primary" "secondary" "tertiary"]
-             :layout {:line-cap "round"
-                      :line-join "round"}
-             :paint {:line-color main
-                     :line-width main_width}}]})
+                     :line-width motorway_width}}]})
