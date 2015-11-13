@@ -23,8 +23,8 @@
     (if navigator.geolocation
       (.getCurrentPosition navigator.geolocation
         (fn [pos]
-          (let [initialLoc #js [(.-coords.latitude pos)
-                                (.-coords.longitude pos)]]
+          (let [initialLoc #js [(.-coords.longitude pos)
+                                (.-coords.latitude pos)]]
             (.setCenter map initialLoc))))
       (println "Hey, where'd you go!? Geolocation Disabled."))
 
