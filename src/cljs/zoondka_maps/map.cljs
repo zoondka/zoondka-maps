@@ -5,18 +5,12 @@
             [clojure.set :as set]
             [zoondka-maps.util :as u]))
 
-(def mapbox-key "pk.eyJ1IjoibGVibG93bCIsImEiOiJmMzEzNGMzMDgzOWEyNjg0NDAwMzQzMWQ1OTUzM2FmYSJ9.J-V3-0X4LnoyptGTCGys3g")
-
 (defn init-map [owner]
-  (set! (.-accessToken js/mapboxgl) mapbox-key)
-
   (let [map (js/mapboxgl.Map. (clj->js {:container "map"
                                         :style "style/bright-v8.json"
                                         :zoom 4
                                         :center [0, 0]
                                         :attributionControl false}))]
-
-    ;;(set! (.-debug map) true)
 
     (if navigator.geolocation
       (.getCurrentPosition navigator.geolocation
