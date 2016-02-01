@@ -1,17 +1,19 @@
-(def project {:name "zoondka-maps" :version "0.1.1"})
+(def project {:name "zoondka-maps" :version "0.2.0"})
 
 (set-env!
   :source-paths   #{"src/clj" "src/cljs"}
   :resource-paths #{"rsc"}
-  :target-path    "target"
-  :dependencies '[[adzerk/boot-cljs "0.0-3308-0"]
-                  [adzerk/boot-cljs-repl "0.1.9"]
-                  [adzerk/boot-reload "0.3.1"]
+  :target-path "target"
+  :dependencies '[[adzerk/boot-cljs "1.7.228-1"]
+                  [adzerk/boot-reload "0.4.5"]
                   [org.clojure/clojure "1.7.0"]
-                  [org.clojure/clojurescript "0.0-3308"]
-                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                  [org.omcljs/om "0.9.0"]
-                  [sablono "0.3.4"]
+                  [org.clojure/clojurescript "1.7.228"]
+                  [org.clojure/core.async "0.2.374"]
+                  [cljsjs/react "0.14.3-0"]
+                  [cljsjs/react-dom "0.14.3-1"]
+                  [cljsjs/react-dom-server "0.14.3-0"]
+                  [org.omcljs/om "1.0.0-alpha30" :exclusions [cljsjs/react]]
+                  [sablono "0.5.3"]
                   [ring "1.4.0"]
                   [compojure "1.4.0"]
                   [http-kit "2.1.19"]])
@@ -20,7 +22,6 @@
   '[boot.pod                  :as pod]
   '[adzerk.boot-cljs          :refer :all]
   '[adzerk.boot-reload        :refer :all]
-  '[adzerk.boot-cljs-repl     :refer :all]
   '[zoondka-maps.server       :as server]
   '[ring.middleware.reload    :as reload]
   '[ring.middleware.file      :as file]
@@ -32,7 +33,9 @@
   (comp (watch)
         (speak)
         (reload :on-jsload (symbol "zoondka-maps.app/go!"))
-        (cljs :compiler-options {:output-to "js/main.js"})))
+        (cljs :source-map true
+              :optimizations :none)
+        (target :dir #{"target"})))
 
 (defn dev-handler []
   (-> server/handler (reload/wrap-reload)
@@ -52,7 +55,7 @@
 (deftask prod
   "Build application uberjar with http-kit main."
   []
-  (comp (cljs :compiler-options {:output-to "js/main.js"})
+  (comp (cljs)
         (aot :namespace '#{zoondka-maps.server zoondka-maps.handler})
         (pom :project (symbol (:name project))
              :version (:version project))
