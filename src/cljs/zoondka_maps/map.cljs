@@ -5,29 +5,24 @@
             [clojure.set :as set]
             [zoondka-maps.util :as u]))
 
-(defn init-map [tile-url tile-attr owner]
-  (when-let [l-map (om/get-state owner :map)]
-    (.remove l-map))
-  (let [l-map (-> js/L
-                (.map "map"
-                  (clj->js {:zoomControl false}))
-                (.setView (om/get-state owner :center) 9))]
-
-    (-> js/L
-      (.tileLayer (:value tile-url) #js {:attribution (:value tile-attr)})
-      (.addTo l-map))
-
-    (.on l-map "contextmenu" #())
+(defn init-map [owner]
+  (let [map (js/mapboxgl.Map. (clj->js {:container "map"
+                                        :style "style/bright-v8.json"
+                                        :zoom 4
+                                        :center [0, 0]
+                                        :attributionControl false}))]
 
     (if navigator.geolocation
       (.getCurrentPosition navigator.geolocation
         (fn [pos]
-          (let [initialLoc #js [(.-coords.latitude pos)
-                                (.-coords.longitude pos)]]
-            (.setView l-map initialLoc 9))))
-      (println "Hey, where'd you go!? Geolocation Disabled."))
+          (let [initialLoc #js [(.-coords.longitude pos)
+                                (.-coords.latitude pos)]]
+            (.setCenter map initialLoc)))
+        (fn [err]
+          (.warn js/console "Warning: Geolocation: Unable to get your current position: " err)))
+      (.warn js/console "Warning: Geolocation: Disabled"))
 
-    (om/set-state! owner :map l-map)))
+    (om/set-state! owner :map map)))
 
 (defn l-map [{:keys [tile-url tile-attr]} owner]
   (reify
@@ -40,7 +35,7 @@
 
     om/IDidMount
     (did-mount [_]
-      (init-map tile-url tile-attr owner))
+      (init-map owner))
 
     om/IRender
     (render [_]
