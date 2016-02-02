@@ -64,6 +64,6 @@
              :main 'zoondka-maps.server)))
 
 (deftask prod-install
-  "Install to local Maven repository."
+  "Install uberjar to local Maven repository for deployment."
   []
-  (comp (prod) (install)))
+  (comp (prod) (install :pom "zoondka-maps/zoondka-maps")))
