@@ -35,7 +35,7 @@
         (reload :on-jsload (symbol "zoondka-maps.app/go!"))
         (cljs :source-map true
               :optimizations :none)
-        (target :dir #{"target"})))
+        (target)))
 
 (defn dev-handler []
   (-> server/handler (reload/wrap-reload)
@@ -61,9 +61,5 @@
              :version (:version project))
         (uber :exclude (conj pod/standard-jar-exclusions  #"(?i).*\.html" #"(?i)clout/.*"))
         (jar :file (str (:name project) ".jar")
-             :main 'zoondka-maps.server)))
-
-(deftask prod-install
-  "Install uberjar to local Maven repository for deployment."
-  []
-  (comp (prod) (install :pom "zoondka-maps/zoondka-maps")))
+             :main 'zoondka-maps.server)
+        (target)))
