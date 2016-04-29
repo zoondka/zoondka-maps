@@ -7,7 +7,7 @@ git clone https://github.com/zoondka/zoondka-maps.git
 ```
 
 ## Building
-Zoondka Maps uses the [Boot build framework](https://github.com/boot-clj/boot) for dev & production.
+Zoondka Maps requires the [Boot build framework](https://github.com/boot-clj/boot) for dev & production. See [install](https://github.com/boot-clj/boot#install).
 
 ### Dev
 With Boot installed, you can launch a [http-kit](https://github.com/http-kit/http-kit) server with Zoondka Maps served on http://localhost:8090 for use when developing:
