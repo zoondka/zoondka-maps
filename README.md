@@ -3,7 +3,7 @@ Zoondka Maps is a simple mapping web app that displays a map using internal tile
 
 ## Installing
 ```
-git clone https://github.com/zoondka/zoondka-maps
+git clone https://github.com/zoondka/zoondka-maps.git
 ```
 
 ## Building
