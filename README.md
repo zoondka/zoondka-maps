@@ -35,3 +35,5 @@ sudo systemctl daemon-reload
 sudo systemctl enable zoondka-maps
 sudo systemctl start zoondka-maps
 ```
+### Etc
+You can list all available Boot tasks with `boot -h`. Project specific tasks are defined in [build.boot](https://github.com/zoondka/zoondka-maps/blob/master/build.boot).
