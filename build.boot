@@ -3,7 +3,6 @@
 (set-env!
   :source-paths   #{"src/clj" "src/cljs"}
   :resource-paths #{"rsc"}
-  :target-path "target"
   :dependencies '[[adzerk/boot-cljs "1.7.228-1"]
                   [adzerk/boot-reload "0.4.5"]
                   [org.clojure/clojure "1.7.0"]
